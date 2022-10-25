@@ -1,8 +1,8 @@
 <x-app-layout>
     <div class="container bg-red-100 mt-5">
-        <div class="grid grid-cols-3 gap-6 mr-5 ml-5">
+        <div class="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-6 mr-5 ml-5">
             @foreach($posts as $post)
-                <div class="bg-center @if($loop->first) col-span-2 @endif" style="background-image: url('{{$post->images->url}}'); height: 400px; weight:100%">
+                <div class="bg-center @if($loop->first) md:col-span-2 lg:col-span-2 @endif" style="background-image: url('{{$post->images->url}}'); height: 400px; weight:100%">
                     <div class="w-full h-full px-8 flex flex-col justify-center">
 
                         <div>
