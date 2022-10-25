@@ -7,14 +7,9 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+    public function index(){
+        $posts = Post::where('status', '=', '1')->latest('id')->paginate(8);
+        return view('post.index', compact('posts'));
     }
 
     /**
