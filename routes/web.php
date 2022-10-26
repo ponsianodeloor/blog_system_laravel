@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CategoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,6 +23,10 @@ Route::controller(PostController::class)->group(function (){
     Route::get('/posts/{post}', 'show')->name('posts.show');
 });
 
+Route::controller(CategoryController::class)->group(function (){
+    Route::get('/categories', 'index')->name('categories.index');
+    Route::get('/categories/{category}', 'show')->name('category.show');
+});
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
