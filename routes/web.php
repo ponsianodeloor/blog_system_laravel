@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\TagController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,6 +28,11 @@ Route::controller(CategoryController::class)->group(function (){
     Route::get('/categories', 'index')->name('categories.index');
     Route::get('/categories/{category}', 'show')->name('category.show');
 });
+
+Route::controller(TagController::class)->group(function (){
+    Route::get('/tag/{tag}', 'show')->name('tag.show');
+});
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
