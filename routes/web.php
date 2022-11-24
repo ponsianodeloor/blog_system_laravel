@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\TagController;
 /*
 |--------------------------------------------------------------------------
@@ -45,8 +46,16 @@ Route::middleware([
 
     Route::get('system', function (){
         return view('system.index');
-    });
+    })->name('system');
 
+    Route::controller(AdminCategoryController::class)->group(function (){
+        Route::get('/system/admin/categories', 'index')->name('system.admin.categories.index');
+        Route::get('/system/admin/categories/{category}', 'edit')->name('system.admin.categories.edit');
+
+        Route::post('/system/admin/categories', 'store')->name('system.admin.category.store');
+        Route::put('/system/admin/categories/update/{category}', 'update')->name('system.admin.categories.update');
+        Route::delete('/system/admin/categories/destroy/{category}', 'destroy')->name('system.admin.categories.destroy');
+    });
 
 
 
