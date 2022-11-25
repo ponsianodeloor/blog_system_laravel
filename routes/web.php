@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\admin\PostController as AdminPostController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\TagController;
@@ -57,6 +58,7 @@ Route::middleware([
         Route::put('/system/admin/categories/update/{category}', 'update')->name('system.admin.categories.update');
         Route::delete('/system/admin/categories/destroy/{category}', 'destroy')->name('system.admin.categories.destroy');
     });
+
     Route::controller(AdminTagController::class)->group(function (){
         Route::get('/system/admin/tags', 'index')->name('system.admin.tags.index');
         Route::get('/system/admin/tags/{tag}', 'edit')->name('system.admin.tags.edit');
@@ -64,6 +66,11 @@ Route::middleware([
         Route::post('/system/admin/tags', 'store')->name('system.admin.tag.store');
         Route::put('/system/admin/tags/update/{tag}', 'update')->name('system.admin.tags.update');
         Route::delete('/system/admin/tags/destroy/{tag}', 'destroy')->name('system.admin.tags.destroy');
+    });
+
+    Route::controller(AdminPostController::class)->group(function (){
+        Route::get('/system/admin/posts', 'index')->name('system.admin.posts.index');
+        Route::get('/system/admin/posts/livewire', 'indexLivewire')->name('system.admin.posts.index.livewire');
     });
 
 });

@@ -331,7 +331,12 @@ return [
         ['header' => 'Opciones de Blog'],
         [
             'text' => 'Post',
-            'url'  => 'admin/settings',
+            'route'  => 'system.admin.posts.index',
+            'icon' => 'fas fa-fw fa-comment',
+        ],
+        [
+            'text' => 'Post Livewire',
+            'route'  => 'system.admin.posts.index.livewire',
             'icon' => 'fas fa-fw fa-comment',
         ],
         [
