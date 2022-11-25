@@ -62,10 +62,8 @@ Route::middleware([
         Route::get('/system/admin/tags/{tag}', 'edit')->name('system.admin.tags.edit');
 
         Route::post('/system/admin/tags', 'store')->name('system.admin.tag.store');
-        Route::put('/system/admin/tags/update/{category}', 'update')->name('system.admin.tags.update');
-        Route::delete('/system/admin/tags/destroy/{category}', 'destroy')->name('system.admin.tags.destroy');
+        Route::put('/system/admin/tags/update/{tag}', 'update')->name('system.admin.tags.update');
+        Route::delete('/system/admin/tags/destroy/{tag}', 'destroy')->name('system.admin.tags.destroy');
     });
-
-
 
 });

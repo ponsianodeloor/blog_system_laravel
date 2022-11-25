@@ -317,21 +317,22 @@ return [
             'icon'        => 'fa fa-university',
             'label_color' => 'success',
         ],
-        ['header' => 'account_settings'],
+        ['header' => 'Administrador'],
         [
             'text' => 'Category',
             'route'  => 'system.admin.categories.index',
             'icon' => 'fas fa-fw fa-cubes',
         ],
         [
-            'text' => 'Post',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-comment',
-        ],
-        [
             'text' => 'Tags',
             'route'  => 'system.admin.tags.index',
             'icon' => 'fas fa-fw fa-tags',
+        ],
+        ['header' => 'Opciones de Blog'],
+        [
+            'text' => 'Post',
+            'url'  => 'admin/settings',
+            'icon' => 'fas fa-fw fa-comment',
         ],
         [
             'text' => 'change_password',

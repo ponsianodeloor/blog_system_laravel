@@ -35,14 +35,27 @@ class TagController extends Controller
     }
 
     public function edit(Tag $tag){
-
+        return view('system.tags.edit', compact('tag'));
     }
 
     public function update(Request $request, Tag $tag){
+        $request->validate([
+            'name'=>'required',
+            'slug'=>"required|unique:tags,slug,$tag->id",
+            'color'=>"required"
+        ]);
 
+        $tag->name = $request->name;
+        $tag->slug = $request->slug;
+        $tag->color = $request->color;
+
+        $tag->save();
+
+        return redirect()->route('system.admin.tags.index')->with('message_info', 'El Tag se actualizo con exito');
     }
 
     public function destroy(Tag $tag){
-
+        $tag->delete();
+        return redirect()->route('system.admin.tags.index')->with('message_info', 'El Tag se eliminado correctamente');
     }
 }

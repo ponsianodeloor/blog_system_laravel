@@ -1,27 +1,27 @@
 @extends('adminlte::page')
 
-@section('title', 'Categories')
+@section('title', 'Tags')
 
 @section('content_header')
-    <h1>Categories</h1>
+    <h1>Tags</h1>
 @stop
 
 @section('content')
-    <p>Categories</p>
+    <p>Tags</p>
     <div class="row">
         <div class="col-6">
             <div class="card card-primary">
                 <div class="card-header">
-                    <h3 class="card-title">Nueva Categoria</h3>
+                    <h3 class="card-title">Editar Tag</h3>
                 </div>
 
-                <form action="{{route('system.admin.categories.update', $category)}}" method="post">
+                <form action="{{route('system.admin.tags.update', $tag)}}" method="post">
                     @csrf
                     @method('PUT')
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Category</label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Ingrese el nombre de la Categoria" value="{{$category->name}}">
+                            <label for="exampleInputEmail1">Tag</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Ingrese el nombre del Tag" value="{{$tag->name}}">
                             @error('name')
                             <span class="text-danger">{{$message}}</span>
                             @enderror
@@ -29,15 +29,23 @@
 
                         <div class="form-group">
                             <label for="exampleInputEmail1">Slug</label>
-                            <input type="text" class="form-control" id="slug" name="slug" placeholder="Slug" value="{{$category->slug}}">
+                            <input type="text" class="form-control" id="slug" name="slug" placeholder="Slug" value="{{$tag->slug}}">
                             @error('slug')
+                            <span class="text-danger">{{$message}}</span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Color</label>
+                            <input type="text" class="form-control" id="color" name="color" placeholder="Color" value="{{$tag->color}}">
+                            @error('color')
                             <span class="text-danger">{{$message}}</span>
                             @enderror
                         </div>
                     </div>
 
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">Guardar Categoria</button>
+                        <button type="submit" class="btn btn-primary">Guardar Tag</button>
                     </div>
                 </form>
             </div>
@@ -54,14 +62,16 @@
                     <table class="table table-bordered">
                         <thead>
                         <tr>
-                            <th>Category</th>
+                            <th>Tag</th>
                             <th>Slug</th>
+                            <th>Color</th>
                         </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>{{$category->name}}</td>
-                                <td>{{$category->slug}}</td>
+                                <td>{{$tag->name}}</td>
+                                <td>{{$tag->slug}}</td>
+                                <td>{{$tag->color}}</td>
                             </tr>
                         </tr>
                         </tbody>
