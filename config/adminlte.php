@@ -330,7 +330,7 @@ return [
         ],
         [
             'text' => 'Tags',
-            'url'  => 'admin/settings',
+            'route'  => 'system.admin.tags.index',
             'icon' => 'fas fa-fw fa-tags',
         ],
         [

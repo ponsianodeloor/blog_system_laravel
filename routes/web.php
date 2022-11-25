@@ -5,6 +5,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\admin\TagController as AdminTagController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -55,6 +56,14 @@ Route::middleware([
         Route::post('/system/admin/categories', 'store')->name('system.admin.category.store');
         Route::put('/system/admin/categories/update/{category}', 'update')->name('system.admin.categories.update');
         Route::delete('/system/admin/categories/destroy/{category}', 'destroy')->name('system.admin.categories.destroy');
+    });
+    Route::controller(AdminTagController::class)->group(function (){
+        Route::get('/system/admin/tags', 'index')->name('system.admin.tags.index');
+        Route::get('/system/admin/tags/{tag}', 'edit')->name('system.admin.tags.edit');
+
+        Route::post('/system/admin/tags', 'store')->name('system.admin.tag.store');
+        Route::put('/system/admin/tags/update/{category}', 'update')->name('system.admin.tags.update');
+        Route::delete('/system/admin/tags/destroy/{category}', 'destroy')->name('system.admin.tags.destroy');
     });
 
 
