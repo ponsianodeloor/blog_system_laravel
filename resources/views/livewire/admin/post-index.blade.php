@@ -9,8 +9,21 @@
 
                 <form method="post">
                     <div class="card-body">
+
+                        <x-adminlte-select name="category_id" label="Category" label-class="text-lightblue">
+                            <x-slot name="prependSlot">
+                                <div class="input-group-text bg-gradient-info">
+                                    <i class="fas fa-sitemap"></i>
+                                </div>
+                            </x-slot>
+                            @foreach($categories as $category)
+                                <option value="{{$category->id}}">{{$category->name}}</option>
+                            @endforeach
+
+                        </x-adminlte-select>
+
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Category</label>
+                            <label for="exampleInputEmail1">Name</label>
                             <input type="text" class="form-control" id="name" name="name" placeholder="Ingrese el nombre de la Categoria">
                         </div>
 
@@ -28,10 +41,22 @@
                             <label for="exampleInputEmail1">Body</label>
                             <input type="text" class="form-control" id="body" name="body" placeholder="Body">
                         </div>
+
+                        <x-adminlte-select name="status" label="Status" label-class="text-lightblue">
+                            <x-slot name="prependSlot">
+                                <div class="input-group-text bg-gradient-info">
+                                    <i class="fas fa-sitemap"></i>
+                                </div>
+                            </x-slot>
+
+                            <option value="1">Activo</option>
+                            <option value="2">Inactivo</option>
+
+                        </x-adminlte-select>
                     </div>
 
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">Guardar Categoria</button>
+                        <button type="submit" class="btn btn-primary">Guardar Post</button>
                     </div>
                 </form>
             </div>
@@ -41,41 +66,52 @@
         <div class="col-6">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Posts</h3>
+                    {{$search}}
+                    <input wire:model="search" class="form-control" placeholder="Ingrese el post a buscar">
                 </div>
 
-                <div class="card-body">
-                    <table class="table table-bordered">
-                        <thead>
-                        <tr>
-                            <th style="width: 35%">Actions</th>
-                            <th>Category</th>
-                            <th>Slug</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($posts as $post)
+                @if(count($posts)>0)
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <thead>
                             <tr>
-                                <td>
-                                    <a href="{{route('system.admin.categories.edit', $post->id)}}" class="btn btn-primary mb-2">
-                                        <i class="fa fa-edit" aria-hidden="true"></i>
-                                    </a>
-                                    <form action="{{route('system.admin.categories.destroy', $post->id)}}" method="post">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="btn btn-danger" type="submit"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                                    </form>
-                                </td>
-                                <td>{{$post->name}}</td>
-                                <td>{{$post->slug}}</td>
+                                <th style="width: 35%">Actions</th>
+                                <th>Name</th>
+                                <th>Slug</th>
                             </tr>
-                            @endforeach
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                            </thead>
+                            <tbody>
+                            @foreach($posts as $post)
+                                <tr>
+                                    <td>
+                                        <a href="{{route('system.admin.categories.edit', $post->id)}}" class="btn btn-primary mb-2">
+                                            <i class="fa fa-edit" aria-hidden="true"></i>
+                                        </a>
+                                        <form action="{{route('system.admin.categories.destroy', $post->id)}}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-danger" type="submit"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                        </form>
+                                    </td>
+                                    <td>{{$post->name}}</td>
+                                    <td>{{$post->slug}}</td>
+                                </tr>
+                                @endforeach
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                @else
+                    <div class="card-body">
+                        <div class="alert alert-danger" role="alert">
+                            NO existe ningun registro
+                        </div>
+                    </div>
+                @endif
+
 
                 <div class="card-footer clearfix">
+                    {{$posts->links()}}
                 </div>
             </div>
         </div>
