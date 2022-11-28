@@ -18,4 +18,12 @@ class PostPolicy
     public function sameUserPostRegister(User $user, Post $post){
         return $user->id == $post->user_id;
     }
+
+    public function published(User $user, Post $post){
+        if ($post->status == 1){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
