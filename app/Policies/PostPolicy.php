@@ -19,7 +19,7 @@ class PostPolicy
         return $user->id == $post->user_id;
     }
 
-    public function published(User $user, Post $post){
+    public function published(?User $user, Post $post){
         if ($post->status == 1){
             return true;
         }else{
