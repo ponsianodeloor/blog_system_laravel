@@ -92,7 +92,7 @@
                             @foreach($posts as $post)
                                 <tr>
                                     <td>
-                                        <a href="{{route('system.admin.categories.edit', $post->id)}}" class="btn btn-primary mb-2">
+                                        <a href="{{route('system.admin.posts.edit', $post->id)}}" class="btn btn-primary mb-2">
                                             <i class="fa fa-edit" aria-hidden="true"></i>
                                         </a>
                                         <form action="{{route('system.admin.categories.destroy', $post->id)}}" method="post">

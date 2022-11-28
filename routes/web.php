@@ -70,9 +70,11 @@ Route::middleware([
 
     Route::controller(AdminPostController::class)->group(function (){
         Route::get('/system/admin/posts', 'index')->name('system.admin.posts.index');
+        Route::get('/system/admin/posts/edit/{post}', 'edit')->name('system.admin.posts.edit');
         Route::get('/system/admin/posts/livewire', 'indexLivewire')->name('system.admin.posts.index.livewire');
 
         Route::post('/system/admin/posts', 'store')->name('system.admin.posts.store');
+        Route::put('/system/admin/posts/{post}', 'update')->name('system.admin.posts.update');
     });
 
 });
