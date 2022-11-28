@@ -7,7 +7,8 @@
                     <h3 class="card-title">Nuevo Posts</h3>
                 </div>
 
-                <form method="post">
+                <form action="{{route('system.admin.posts.store')}}" method="post">
+                    @csrf
                     <div class="card-body">
 
                         <x-adminlte-select name="category_id" label="Category" label-class="text-lightblue">
@@ -53,6 +54,13 @@
                             <option value="2">Inactivo</option>
 
                         </x-adminlte-select>
+
+                        @foreach($tags as $tag)
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="{{$tag->id}}" name="tags[]" value="{{$tag->id}}">
+                                <label class="form-check-label" for="{{$tag->id}}">{{$tag->name}}</label>
+                            </div>
+                        @endforeach
                     </div>
 
                     <div class="card-footer">

@@ -71,6 +71,8 @@ Route::middleware([
     Route::controller(AdminPostController::class)->group(function (){
         Route::get('/system/admin/posts', 'index')->name('system.admin.posts.index');
         Route::get('/system/admin/posts/livewire', 'indexLivewire')->name('system.admin.posts.index.livewire');
+
+        Route::post('/system/admin/posts', 'store')->name('system.admin.posts.store');
     });
 
 });
