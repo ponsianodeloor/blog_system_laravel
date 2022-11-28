@@ -48,12 +48,16 @@ class PostController extends Controller
     }
 
     public function edit(Post $post){
+        $this->authorize('sameUserPostRegister', $post);
+
         $categories = Category::all();
         $tags = Tag::all();
         return view('system.posts.edit', compact('post', 'categories', 'tags'));
     }
 
     public function update(Request $request, Post $post){
+        $this->authorize('sameUserPostRegister', $post);
+
         $post->name = $request->name;
         $post->slug = $request->slug;
         $post->extract = $request->extract;
