@@ -12,7 +12,7 @@
             {{--Contenido principal--}}
             <div class="col-span-2">
                 <figure>
-                    <img class="w-full h-80 object-cover object-center" src="{{$post->images->url}}"/>
+                    <img class="w-full h-80 object-cover object-center" src="@if($post->images) {{$post->images->url}}  @endif"/>
                 </figure>
                 <div class="text-base text-gray-500 mt-4">
                     {{$post->body}}
@@ -25,7 +25,7 @@
                     @foreach($posts_similares as $post_similar)
                         <li class="mb-4">
                             <a href="{{route('posts.show', $post_similar)}}">
-                                <img class="w-36 h-20 object-cover object-center"  src="{{$post_similar->images->url}}">
+                                <img class="w-36 h-20 object-cover object-center"  src="@if($post->images) {{$post->images->url}}  @endif">
                                 <span class="ml-2 text-gray-600">
                                     {{$post_similar->name}}
                                 </span>
