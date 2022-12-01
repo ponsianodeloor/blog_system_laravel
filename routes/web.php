@@ -5,6 +5,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\admin\PostController as AdminPostController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\admin\CategoryController as AdminCategoryController;
+use App\Http\Controllers\ProductController as AdminProductController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\admin\TagController as AdminTagController;
 /*
@@ -57,6 +58,10 @@ Route::middleware([
         Route::post('/system/admin/categories', 'store')->name('system.admin.category.store');
         Route::put('/system/admin/categories/update/{category}', 'update')->name('system.admin.categories.update');
         Route::delete('/system/admin/categories/destroy/{category}', 'destroy')->name('system.admin.categories.destroy');
+    });
+
+    Route::controller(AdminProductController::class)->group(function (){
+        Route::get('/system/admin/products', 'index')->name('system.admin.products.index');
     });
 
     Route::controller(AdminTagController::class)->group(function (){

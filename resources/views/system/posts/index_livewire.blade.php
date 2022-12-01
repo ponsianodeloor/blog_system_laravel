@@ -9,6 +9,7 @@
 @section('content')
     <p>Post</p>
     @livewire('admin.post-index')
+    @livewire('product')
 @stop
 
 @section('css')

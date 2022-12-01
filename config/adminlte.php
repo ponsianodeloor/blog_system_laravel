@@ -340,6 +340,16 @@ return [
             'icon' => 'fas fa-fw fa-comment',
         ],
         [
+            'text' => 'Products',
+            'route'  => 'system.admin.products.index',
+            'icon' => 'fas fa-fw fa-comment',
+        ],
+        [
+            'text' => 'Products Livewire',
+            'route'  => 'system.admin.posts.index.livewire',
+            'icon' => 'fas fa-fw fa-comment',
+        ],
+        [
             'text' => 'change_password',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
