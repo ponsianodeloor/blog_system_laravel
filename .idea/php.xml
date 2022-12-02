@@ -123,6 +123,7 @@
       <path value="$PROJECT_DIR$/vendor/_laravel_idea" />
       <path value="$PROJECT_DIR$/vendor/jeroennoten/laravel-adminlte" />
       <path value="$PROJECT_DIR$/vendor/almasaeed2010/adminlte" />
+      <path value="$PROJECT_DIR$/vendor/spatie/laravel-permission" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.0" />
