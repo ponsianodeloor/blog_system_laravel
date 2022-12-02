@@ -31,5 +31,7 @@ class DatabaseSeeder extends Seeder
         Tag::factory(8)->create();
         //Post::factory(100)->create(); //debe ejecutarse en un seeder para crear tambien las imagenes
         $this->call(PostSeeder::class);
+        $this->call(RoleSeeder::class);
+
     }
 }
