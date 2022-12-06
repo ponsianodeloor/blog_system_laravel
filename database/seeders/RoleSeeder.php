@@ -13,27 +13,35 @@ class RoleSeeder extends Seeder
     {
         $role_1 = Role::create(['name'=>'Admin']);
         $role_2 = Role::create(['name'=>'Proveedor']);
+        $role_3 = Role::create(['name'=>'Validador']);
 
         Permission::create(['name'=>'system']);
 
-        Permission::create(['name'=>'system.admin.categories.index']);
-        Permission::create(['name'=>'system.admin.categories.store']);
-        Permission::create(['name'=>'system.admin.categories.edit']);
-        Permission::create(['name'=>'system.admin.categories.update']);
-        Permission::create(['name'=>'system.admin.categories.destroy']);
+        /**
+         * permisos para relacionar un rol con un permiso
+         */
+        //Permission::create(['name'=>'system.admin.categories.index'])->assingRole($role_1);
+        Permission::create(['name'=>'system.admin.categories.index'])->syncRoles([$role_1, $role_2]);
+        Permission::create(['name'=>'system.admin.categories.store'])->syncRoles([$role_1, $role_2]);
+        Permission::create(['name'=>'system.admin.categories.edit'])->syncRoles([$role_1, $role_2]);
+        Permission::create(['name'=>'system.admin.categories.update'])->syncRoles([$role_1, $role_2]);
+        Permission::create(['name'=>'system.admin.categories.destroy'])->syncRoles([$role_1]);
 
-        Permission::create(['name'=>'system.admin.tags.index']);
-        Permission::create(['name'=>'system.admin.tags.store']);
-        Permission::create(['name'=>'system.admin.tags.edit']);
-        Permission::create(['name'=>'system.admin.tags.update']);
-        Permission::create(['name'=>'system.admin.tags.destroy']);
+        Permission::create(['name'=>'system.admin.tags.index'])->syncRoles([$role_1, $role_2]);
+        Permission::create(['name'=>'system.admin.tags.store'])->syncRoles([$role_1, $role_2]);
+        Permission::create(['name'=>'system.admin.tags.edit'])->syncRoles([$role_1, $role_2]);
+        Permission::create(['name'=>'system.admin.tags.update'])->syncRoles([$role_1, $role_2]);
+        Permission::create(['name'=>'system.admin.tags.destroy'])->syncRoles([$role_1]);
 
-        Permission::create(['name'=>'system.admin.posts.index']);
-        Permission::create(['name'=>'system.admin.posts.store']);
-        Permission::create(['name'=>'system.admin.posts.edit']);
-        Permission::create(['name'=>'system.admin.posts.update']);
-        Permission::create(['name'=>'system.admin.posts.destroy']);
+        Permission::create(['name'=>'system.admin.posts.index'])->syncRoles([$role_1, $role_2, $role_3]);
+        Permission::create(['name'=>'system.admin.posts.store'])->syncRoles([$role_1, $role_2, $role_3]);
+        Permission::create(['name'=>'system.admin.posts.edit'])->syncRoles([$role_1, $role_2, $role_3]);
+        Permission::create(['name'=>'system.admin.posts.update'])->syncRoles([$role_1, $role_2, $role_3]);
+        Permission::create(['name'=>'system.admin.posts.destroy'])->syncRoles([$role_1, $role_3]);
 
-        $role_1->permissions()->attach([1, 2, 3, 6, 11]);
+        /**
+         * Se pueden asignar los permisos de usando attach
+         */
+        //$role_1->permissions()->attach([1, 2, 3, 6, 11]);
     }
 }

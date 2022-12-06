@@ -13,7 +13,7 @@ class UserSeeder extends Seeder
             'name'=>'Ponsiano De Loor',
             'email' => 'ponsianodeloor@gmail.com',
             'password' => Hash::make('ponsiano')
-        ]);
+        ])->assignRole('Admin');
         User::factory(99)->create();
     }
 }
