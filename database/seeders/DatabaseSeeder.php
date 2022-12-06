@@ -26,12 +26,12 @@ class DatabaseSeeder extends Seeder
         Storage::deleteDirectory('post');
         Storage::makeDirectory('post');
 
+        $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);
         Category::factory(4)->create();
         Tag::factory(8)->create();
         //Post::factory(100)->create(); //debe ejecutarse en un seeder para crear tambien las imagenes
         $this->call(PostSeeder::class);
-        $this->call(RoleSeeder::class);
 
     }
 }
