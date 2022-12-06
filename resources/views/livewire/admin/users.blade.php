@@ -32,7 +32,7 @@
                             {{$user->email}}
                         </td>
                         <td>
-                            <a class="btn btn-primary" href="#">
+                            <a class="btn btn-primary" href="{{route('system.admin.users.edit', $user)}}">
                                 Editar
                             </a>
                         </td>

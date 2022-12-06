@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\UserController as AdminUSerController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\admin\PostController as AdminPostController;
 use App\Http\Controllers\CategoryController;
@@ -24,8 +24,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::controller(UserController::class)->group(function (){
-    Route::get('/users', 'index')->name('system.users.index');
+Route::controller(AdminUSerController::class)->group(function (){
+    Route::get('/system/admin/users', 'index')->name('system.admin.users.index');
+    Route::get('/system/admin/users/{user}', 'edit')->name('system.admin.users.edit');
+
+    Route::put('/system/admin/users/{user}', 'update')->name('system.admin.users.update');
 });
 
 Route::controller(PostController::class)->group(function (){

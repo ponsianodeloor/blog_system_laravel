@@ -319,7 +319,7 @@ return [
         ],
         [
             'text'        => 'Usuarios',
-            'route'         => 'system.users.index',
+            'route'       => 'system.admin.users.index',
             'icon'        => 'fa fa-user',
             'label_color' => 'success',
         ],
