@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\admin\PostController as AdminPostController;
 use App\Http\Controllers\CategoryController;
@@ -21,6 +22,10 @@ use App\Http\Controllers\admin\TagController as AdminTagController;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::controller(UserController::class)->group(function (){
+    Route::get('/users', 'index')->name('system.users.index');
 });
 
 Route::controller(PostController::class)->group(function (){

@@ -61,6 +61,10 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
+    public function role(){
+        return $this->belongsTo(Role::class);
+    }
+
     public function posts(){
         return $this->hasMany(Post::class);
     }

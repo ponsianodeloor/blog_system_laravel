@@ -317,6 +317,12 @@ return [
             'icon'        => 'fa fa-university',
             'label_color' => 'success',
         ],
+        [
+            'text'        => 'Usuarios',
+            'route'         => 'system.users.index',
+            'icon'        => 'fa fa-user',
+            'label_color' => 'success',
+        ],
         ['header' => 'Administrador'],
         [
             'text' => 'Category',
