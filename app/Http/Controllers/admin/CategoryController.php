@@ -3,11 +3,20 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Services\MarketService;
 use Illuminate\Http\Request;
 use App\Models\Category;
 
 class CategoryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:system.admin.categories.store')->only('create','store');
+        $this->middleware('can:system.admin.categories.edit')->only('edit', 'show');
+        $this->middleware('can:system.admin.categories.update')->only('update');
+        $this->middleware('can:system.admin.categories.destroy')->only('destroy');
+    }
+
     public function index(){
         $categories = Category::orderBy('id', 'desc')->paginate();
 

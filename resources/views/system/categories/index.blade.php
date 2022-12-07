@@ -8,39 +8,47 @@
 
 @section('content')
     <p>Categories</p>
-    <div class="row">
-        <div class="col-6">
-            @if(session('message_info'))
-                <div class="alert alert-success">
-                    <strong>{{session('message_info')}}</strong>
-                </div>
-            @endif
-            <div class="card card-primary">
-                <div class="card-header">
-                    <h3 class="card-title">Nueva Categoria</h3>
-                </div>
-
-                <form action="{{route('system.admin.category.store')}}" method="post">
-                    @csrf
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Category</label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Ingrese el nombre de la Categoria">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Slug</label>
-                            <input type="text" class="form-control" id="slug" name="slug" placeholder="Slug">
-                        </div>
-                    </div>
-
-                    <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">Guardar Categoria</button>
-                    </div>
-                </form>
-            </div>
+    @can('system.admin.categories.index')
+        <div>
+            Texto a mostrar con los permisos de administrador
         </div>
-        <!-- /.col -->
+    @endcan
+
+    <div class="row">
+        @can('system.admin.categories.store')
+            <div class="col-6">
+                @if(session('message_info'))
+                    <div class="alert alert-success">
+                        <strong>{{session('message_info')}}</strong>
+                    </div>
+                @endif
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Nueva Categoria</h3>
+                    </div>
+
+                    <form action="{{route('system.admin.category.store')}}" method="post">
+                        @csrf
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Category</label>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Ingrese el nombre de la Categoria">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Slug</label>
+                                <input type="text" class="form-control" id="slug" name="slug" placeholder="Slug">
+                            </div>
+                        </div>
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">Guardar Categoria</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- /.col -->
+        @endcan
 
         <div class="col-6">
             <div class="card">
@@ -61,14 +69,20 @@
                             @foreach($categories as $category)
                                 <tr>
                                     <td>
-                                        <a href="{{route('system.admin.categories.edit', $category->id)}}" class="btn btn-primary mb-2">
-                                            <i class="fa fa-edit" aria-hidden="true"></i>
-                                        </a>
-                                        <form action="{{route('system.admin.categories.destroy', $category->id)}}" method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="btn btn-danger" type="submit"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                                        </form>
+                                        @can('system.admin.categories.edit')
+                                            <a href="{{route('system.admin.categories.edit', $category->id)}}" class="btn btn-primary mb-2">
+                                                <i class="fa fa-edit" aria-hidden="true"></i>
+                                            </a>
+                                        @endcan
+
+                                        @can('system.admin.categories.destroy')
+                                            <form action="{{route('system.admin.categories.destroy', $category->id)}}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-danger" type="submit"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                            </form>
+                                        @endcan
+
                                     </td>
                                     <td>{{$category->name}}</td>
                                     <td>{{$category->slug}}</td>

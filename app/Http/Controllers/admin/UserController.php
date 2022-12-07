@@ -5,10 +5,16 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Role;
 use App\Models\User;
+use App\Services\MarketService;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:system.admin.users.index')->only('index');
+    }
+
     public function index(){
         return view('system.users.index');
     }
@@ -39,9 +45,6 @@ class UserController extends Controller
         //return $request->roles;
         $user->save();
         $user->roles()->sync($request->roles);
-
-        $roles = Role::all();
-        $user_with_roles = $user->getRoleNames();
 
         return redirect()->route('system.admin.users.edit', $user)->with('info', 'Se han asignado los roles correctamente');
     }

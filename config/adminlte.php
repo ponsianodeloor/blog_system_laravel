@@ -322,6 +322,7 @@ return [
             'route'       => 'system.admin.users.index',
             'icon'        => 'fa fa-user',
             'label_color' => 'success',
+            'can'         => 'system.admin.users.index'
         ],
         ['header' => 'Administrador'],
         [

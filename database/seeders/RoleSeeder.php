@@ -20,17 +20,23 @@ class RoleSeeder extends Seeder
         /**
          * permisos para relacionar un rol con un permiso
          */
+
+        /**
+         * Crear permisos para manejo de usuarios y asignarlos a un rol Usuarios
+         */
+        Permission::create(['name'=>'system.admin.users.index'])->syncRoles([$role_1]);
+
         //Permission::create(['name'=>'system.admin.categories.index'])->assingRole($role_1);
         Permission::create(['name'=>'system.admin.categories.index'])->syncRoles([$role_1, $role_2]);
-        Permission::create(['name'=>'system.admin.categories.store'])->syncRoles([$role_1, $role_2]);
-        Permission::create(['name'=>'system.admin.categories.edit'])->syncRoles([$role_1, $role_2]);
-        Permission::create(['name'=>'system.admin.categories.update'])->syncRoles([$role_1, $role_2]);
+        Permission::create(['name'=>'system.admin.categories.store'])->syncRoles([$role_1]);
+        Permission::create(['name'=>'system.admin.categories.edit'])->syncRoles([$role_1]);
+        Permission::create(['name'=>'system.admin.categories.update'])->syncRoles([$role_1,]);
         Permission::create(['name'=>'system.admin.categories.destroy'])->syncRoles([$role_1]);
 
         Permission::create(['name'=>'system.admin.tags.index'])->syncRoles([$role_1, $role_2]);
-        Permission::create(['name'=>'system.admin.tags.store'])->syncRoles([$role_1, $role_2]);
-        Permission::create(['name'=>'system.admin.tags.edit'])->syncRoles([$role_1, $role_2]);
-        Permission::create(['name'=>'system.admin.tags.update'])->syncRoles([$role_1, $role_2]);
+        Permission::create(['name'=>'system.admin.tags.store'])->syncRoles([$role_1]);
+        Permission::create(['name'=>'system.admin.tags.edit'])->syncRoles([$role_1]);
+        Permission::create(['name'=>'system.admin.tags.update'])->syncRoles([$role_1]);
         Permission::create(['name'=>'system.admin.tags.destroy'])->syncRoles([$role_1]);
 
         Permission::create(['name'=>'system.admin.posts.index'])->syncRoles([$role_1, $role_2, $role_3]);

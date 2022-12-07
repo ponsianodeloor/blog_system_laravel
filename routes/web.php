@@ -25,7 +25,7 @@ Route::get('/', function () {
 });
 
 Route::controller(AdminUSerController::class)->group(function (){
-    Route::get('/system/admin/users', 'index')->name('system.admin.users.index');
+    Route::get('/system/admin/users', 'index')->middleware('can:system.admin.users.index')->name('system.admin.users.index');
     Route::get('/system/admin/users/{user}', 'edit')->name('system.admin.users.edit');
 
     Route::put('/system/admin/users/{user}', 'update')->name('system.admin.users.update');
