@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Role;
 use App\Models\User;
-use App\Services\MarketService;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class UserController extends Controller
 {
@@ -32,8 +32,8 @@ class UserController extends Controller
     }
 
     public function edit(User $user){
-        $user_with_roles = $user->getRoleNames();
         $roles = Role::all();
+        $user_with_roles = $user->getRoleNames();
 
         return view('system.users.edit', compact('user', 'roles', 'user_with_roles'));
     }
@@ -42,7 +42,6 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
 
-        //return $request->roles;
         $user->save();
         $user->roles()->sync($request->roles);
 

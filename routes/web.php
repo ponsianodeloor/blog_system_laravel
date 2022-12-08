@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\UserController as AdminUSerController;
+use App\Http\Controllers\Admin\RoleController as AdminRoleController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\admin\PostController as AdminPostController;
 use App\Http\Controllers\CategoryController;
@@ -24,7 +25,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::controller(AdminUSerController::class)->group(function (){
+Route::controller(AdminRoleController::class)->group(function (){
+    Route::get('/system/admin/roles', 'index')->name('system.admin.roles.index');
+    Route::get('/system/admin/roles/{role}', 'edit')->name('system.admin.roles.edit');
+
+    Route::put('/system/admin/roles/{role}', 'update')->name('system.admin.roles.update');
+});
+
+Route::controller(AdminUserController::class)->group(function (){
     Route::get('/system/admin/users', 'index')->middleware('can:system.admin.users.index')->name('system.admin.users.index');
     Route::get('/system/admin/users/{user}', 'edit')->name('system.admin.users.edit');
 

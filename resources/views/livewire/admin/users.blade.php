@@ -1,5 +1,4 @@
 <div>
-
     <div class="card">
         <div class="card-title mt-2 mx-2">
             <input type="search" class="form-control" placeholder="Busqueda" wire:model="search">

@@ -318,6 +318,13 @@ return [
             'label_color' => 'success',
         ],
         [
+            'text'        => 'Roles',
+            'route'       => 'system.admin.roles.index',
+            'icon'        => 'fa fa-users',
+            'label_color' => 'success',
+            'can'         => 'system.admin.users.index'
+        ],
+        [
             'text'        => 'Usuarios',
             'route'       => 'system.admin.users.index',
             'icon'        => 'fa fa-user',
